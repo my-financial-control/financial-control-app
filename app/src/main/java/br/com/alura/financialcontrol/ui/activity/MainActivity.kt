@@ -2,12 +2,12 @@ package br.com.alura.financialcontrol.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.alura.financialcontrol.databinding.MainActivityBinding
+import br.com.alura.financialcontrol.databinding.NewTransactionActivityBinding
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        MainActivityBinding.inflate(layoutInflater)
+        NewTransactionActivityBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
