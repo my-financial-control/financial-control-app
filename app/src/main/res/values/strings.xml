@@ -1,4 +1,20 @@
 <resources>
-    <string name="app_name">financialcontrol</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">Controle Financeiro</string>
+    <string name="title_activity_main">Controle Financeiro</string>
+    <string name="available_balance_extract_activity">Saldo disponível</string>
+    <string name="available_balance_plus_value_to_receive_extract_activity">Saldo + Valores a receber:</string>
+    <string name="extract_extract_activity">Extrato</string>
+    <string name="my_balance_main_activity">Meu saldo</string>
+    <string name="new_transaction_button_main_activity">Nova Transação</string>
+    <string name="borrowings_button_main_activity">Empréstimos</string>
+    <string name="bills_to_pay_button_main_activity">Contas a Pagar</string>
+    <string name="title_hint_new_transaction_activity">Título</string>
+    <string name="description_hint_new_transaction_activity">Descrição</string>
+    <string name="value_hint_new_transaction_activity">Valor</string>
+    <string name="type_hint_new_transaction_activity">Tipo de Transação</string>
+    <string name="credit_text_new_transaction_activity">Entrada/Crédito</string>
+    <string name="expense_text_new_transaction_activity">Saída/Débito</string>
+    <string name="current_month_hint_new_transaction_activity">Mês Corrente</string>
+    <string name="date_hint_new_transaction_activity">Data</string>
+    <string name="save_button_new_transaction_activity">SALVAR</string>
 </resources>

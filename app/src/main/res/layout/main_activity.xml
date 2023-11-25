@@ -23,11 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:text="@string/my_balance_main_activity"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Meu saldo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/balanceValueTextView"
@@ -41,15 +41,37 @@
                 app:layout_constraintTop_toBottomOf="@id/myBalanceTextView"
                 tools:text="R$ 1534,68" />
 
-            <TextView
-                android:id="@+id/balancePlusToReceiveValueTextView"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/balancePlusToReceiveValueContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="@id/balanceValueTextView"
                 app:layout_constraintStart_toStartOf="@id/balanceValueTextView"
-                app:layout_constraintTop_toBottomOf="@id/balanceValueTextView"
-                tools:text="Saldo + Valores a receber: R$ 1896,74" />
+                app:layout_constraintTop_toBottomOf="@id/balanceValueTextView">
+
+                <TextView
+                    android:id="@+id/availableBalancePlusToReceiveValueTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/available_balance_plus_value_to_receive_extract_activity"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/availableBalancePlusToReceiveValueTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/availableBalancePlusToReceiveValueTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/availableBalancePlusToReceiveValueTitleTextView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="R$ 1847,63" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/MaterialDivider"
@@ -67,8 +89,8 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/balancePlusToReceiveValueTextView"
-                app:layout_constraintStart_toStartOf="@id/balancePlusToReceiveValueTextView"
+                app:layout_constraintEnd_toEndOf="@id/balancePlusToReceiveValueContainer"
+                app:layout_constraintStart_toStartOf="@id/balancePlusToReceiveValueContainer"
                 app:layout_constraintTop_toTopOf="@+id/MaterialDivider"
                 tools:text="Ver extrato" />
 
@@ -91,13 +113,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/new_transaction_button_main_activity"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Nova Transação" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -118,13 +140,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/borrowings_button_main_activity"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Empréstimos" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,13 +168,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/bills_to_pay_button_main_activity"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Contas a Pagar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
