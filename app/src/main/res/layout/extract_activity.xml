@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/availableBalanceTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Saldo disponível"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/availableBalanceTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/availableBalanceTitleTextView"
+        app:layout_constraintStart_toStartOf="@id/availableBalanceTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/availableBalanceTitleTextView"
+        tools:text="R$ 1534,68" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/balancePlusToReceiveValueContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/availableBalanceTextView"
+        app:layout_constraintStart_toStartOf="@id/availableBalanceTextView"
+        app:layout_constraintTop_toBottomOf="@id/availableBalanceTextView">
+
+        <TextView
+            android:id="@+id/availableBalancePlusToReceiveValueTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Saldo + Valores a receber: "
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/availableBalancePlusToReceiveValueTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/availableBalancePlusToReceiveValueTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/availableBalancePlusToReceiveValueTitleTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="R$ 1847,63" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/MaterialDivider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/balancePlusToReceiveValueContainer"
+        app:layout_constraintStart_toStartOf="@id/balancePlusToReceiveValueContainer"
+        app:layout_constraintTop_toBottomOf="@id/balancePlusToReceiveValueContainer" />
+
+    <TextView
+        android:id="@+id/extractTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Extrato"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/MaterialDivider"
+        app:layout_constraintStart_toStartOf="@id/MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/MaterialDivider" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/extractListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/extractTitleTextView"
+        app:layout_constraintStart_toStartOf="@id/extractTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/extractTitleTextView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="14"
+        tools:listitem="@layout/extract_list_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
