@@ -85,14 +85,14 @@
                 android:id="@+id/seeExtractTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@string/see_extract_main_activity"
                 android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/balancePlusToReceiveValueContainer"
                 app:layout_constraintStart_toStartOf="@id/balancePlusToReceiveValueContainer"
-                app:layout_constraintTop_toTopOf="@+id/MaterialDivider"
-                tools:text="Ver extrato" />
+                app:layout_constraintTop_toTopOf="@+id/MaterialDivider" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

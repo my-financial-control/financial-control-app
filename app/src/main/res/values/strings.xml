@@ -17,4 +17,5 @@
     <string name="current_month_hint_new_transaction_activity">Mês Corrente</string>
     <string name="date_hint_new_transaction_activity">Data</string>
     <string name="save_button_new_transaction_activity">SALVAR</string>
+    <string name="see_extract_main_activity">Ver extrato</string>
 </resources>
