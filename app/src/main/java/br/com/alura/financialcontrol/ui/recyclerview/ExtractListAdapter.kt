@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.financialcontrol.databinding.ExtractListItemBinding
+import br.com.alura.financialcontrol.extensions.defaultFormat
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.model.Transaction
 
@@ -24,7 +25,7 @@ class ExtractListAdapter(
         fun bind(transaction: Transaction) {
             this.title.text = transaction.title
             this.value.text = transaction.value.toPtBr()
-            this.date.text = transaction.date.toString()
+            this.date.text = transaction.date.defaultFormat()
         }
     }
 
