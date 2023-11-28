@@ -1,5 +1,6 @@
 package br.com.alura.financialcontrol.ui.recyclerview
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,11 +26,13 @@ class ExtractListAdapter(
         private val date = binding.transactionDateTextField
         private val ellipseTypeTransaction = binding.ellipse
 
+        @SuppressLint("SetTextI18n")
         fun bind(transaction: TransactionResponse) {
             this.title.text = transaction.title
-            this.value.text = transaction.value.toPtBr()
             this.date.text = LocalDate.parse(transaction.date).defaultFormat()
+            this.value.text = transaction.value.toPtBr()
             if (transaction.type == "EXPENSE") {
+                this.value.text = "- ${transaction.value.toPtBr()}"
                 this.ellipseTypeTransaction.setImageResource(R.drawable.circle_shape_red)
             }
         }
