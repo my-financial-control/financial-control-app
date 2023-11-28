@@ -32,7 +32,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "FINANCIAL_CONTROL_API_HOST", "\"http://192.168.0.106:8080\"")
+            buildConfigField(
+                "String",
+                "FINANCIAL_CONTROL_API_HOST",
+                "\"http://192.168.0.106:8080\""
+            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -54,6 +58,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")

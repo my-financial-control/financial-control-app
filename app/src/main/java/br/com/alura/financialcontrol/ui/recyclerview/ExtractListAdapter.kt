@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.financialcontrol.databinding.ExtractListItemBinding
 import br.com.alura.financialcontrol.extensions.defaultFormat
 import br.com.alura.financialcontrol.extensions.toPtBr
-import br.com.alura.financialcontrol.model.Transaction
+import br.com.alura.financialcontrol.integration.types.TransactionResponse
+import java.time.LocalDate
 
 class ExtractListAdapter(
     private val context: Context,
-    transactions: List<Transaction>
+    transactions: List<TransactionResponse>
 ) : RecyclerView.Adapter<ExtractListAdapter.ViewHolder>() {
 
     private val transactions = transactions.toMutableList()
@@ -22,10 +23,10 @@ class ExtractListAdapter(
         private val value = binding.transactionValueTextField
         private val date = binding.transactionDateTextField
 
-        fun bind(transaction: Transaction) {
+        fun bind(transaction: TransactionResponse) {
             this.title.text = transaction.title
             this.value.text = transaction.value.toPtBr()
-            this.date.text = transaction.date.defaultFormat()
+            this.date.text = LocalDate.parse(transaction.date).defaultFormat()
         }
     }
 

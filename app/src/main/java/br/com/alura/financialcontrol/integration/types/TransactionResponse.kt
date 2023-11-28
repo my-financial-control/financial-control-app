@@ -12,6 +12,6 @@ data class TransactionResponse(
     val value: BigDecimal,
     val type: String,
     val currentMonth: Int,
-    val date: LocalDate,
-    val time: LocalTime
+    val date: String,
+    val time: String
 )

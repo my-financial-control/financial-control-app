@@ -3,12 +3,10 @@ package br.com.alura.financialcontrol.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.alura.financialcontrol.BuildConfig
 import br.com.alura.financialcontrol.databinding.MainActivityBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
-import br.com.alura.financialcontrol.integration.FinancialControlAPI
+import br.com.alura.financialcontrol.integration.FinancialControl
 import br.com.alura.financialcontrol.integration.types.CheckBalanceResponse
-import br.com.alura.financialcontrol.utils.NetworkUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,9 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         MainActivityBinding.inflate(layoutInflater)
     }
-    private val financialControlAPI =
-        NetworkUtils.getRetrofitInstance(BuildConfig.FINANCIAL_CONTROL_API_HOST)
-            .create(FinancialControlAPI::class.java)
+    private val financialControlAPI = FinancialControl.getFinancialAPIInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
