@@ -35,9 +35,17 @@ android {
             buildConfigField(
                 "String",
                 "FINANCIAL_CONTROL_API_HOST",
-                "\"http://192.168.0.106:8080\""
+                "\"https://financial-control-api-master.onrender.com/\""
             )
             signingConfig = signingConfigs.getByName("debug")
+        }
+        debug {
+            isMinifyEnabled = false
+            buildConfigField(
+                "String",
+                "FINANCIAL_CONTROL_API_HOST",
+                "\"https://financial-control-api-master.onrender.com/\""
+            )
         }
     }
     compileOptions {
