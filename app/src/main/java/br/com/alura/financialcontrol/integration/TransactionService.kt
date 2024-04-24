@@ -4,15 +4,16 @@ import br.com.alura.financialcontrol.integration.types.CheckBalanceResponse
 import br.com.alura.financialcontrol.integration.types.TransactionCreateRequest
 import br.com.alura.financialcontrol.integration.types.TransactionResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
-interface FinancialControlAPI {
+interface TransactionService {
 
     @GET("api/v1/transactions")
-    fun findAllTransactions(
+    suspend fun findAllTransactions(
         @Query("month") month: Int?,
         @Query("year") year: Int?
-    ): Call<List<TransactionResponse>>
+    ): Response<List<TransactionResponse>>
 
     @POST("api/v1/transactions")
     fun registerTransaction(@Body request: TransactionCreateRequest): Call<TransactionResponse>

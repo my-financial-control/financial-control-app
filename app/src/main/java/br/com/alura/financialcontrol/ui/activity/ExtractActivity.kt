@@ -2,77 +2,70 @@ package br.com.alura.financialcontrol.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.databinding.ExtractActivityBinding
-import br.com.alura.financialcontrol.extensions.toPtBr
-import br.com.alura.financialcontrol.integration.FinancialControl
-import br.com.alura.financialcontrol.integration.types.CheckBalanceResponse
-import br.com.alura.financialcontrol.integration.types.TransactionResponse
+import br.com.alura.financialcontrol.integration.Result
 import br.com.alura.financialcontrol.ui.recyclerview.ExtractListAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.math.BigDecimal
+import br.com.alura.financialcontrol.viewmodel.TransactionViewModel
+import br.com.alura.financialcontrol.viewmodel.TransactionViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class ExtractActivity : AppCompatActivity() {
 
-    private val transactionsLiveData = MutableLiveData<List<TransactionResponse>>()
     private val binding by lazy {
         ExtractActivityBinding.inflate(layoutInflater)
     }
-    private val financialControlAPI = FinancialControl.getFinancialAPIInstance()
+    private lateinit var transactionViewModel: TransactionViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(this.binding.root)
-        getBalance()
+        transactionViewModel =
+            ViewModelProvider(this, TransactionViewModelFactory())[TransactionViewModel::class.java]
+//        getBalance()
         configRecyclerViewExtract()
-        observeTransactions()
     }
 
     private fun configRecyclerViewExtract() {
-        val extractRecyclerViewAdapter =
-            ExtractListAdapter(context = this, transactions = transactionsLiveData.value.orEmpty())
-        val recyclerView = binding.extractListRecyclerView
-        recyclerView.adapter = extractRecyclerViewAdapter
-    }
+        transactionViewModel.findAllTransactions().observe(this) {
+            val transactions = it?.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data
+                    }
 
-    private fun getBalance() {
-        val callback = financialControlAPI.checkBalance(null, null)
-        callback.enqueue(object : Callback<CheckBalanceResponse> {
-            override fun onFailure(call: Call<CheckBalanceResponse>, t: Throwable) {
-                binding.availableBalanceTextView.text = BigDecimal.ZERO.toPtBr()
+                    is Result.Error -> {
+                        Snackbar.make(
+                            binding.root,
+                            result.exception.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        emptyList()
+                    }
+                }
             }
-
-            override fun onResponse(
-                call: Call<CheckBalanceResponse>,
-                response: Response<CheckBalanceResponse>
-            ) {
-                val body = response.body()
-                binding.availableBalanceTextView.text = body?.balance?.toPtBr()
-            }
-        })
-    }
-
-    private fun getAllTransactions() {
-        val callback = financialControlAPI.findAllTransactions(null, null)
-        callback.enqueue(object : Callback<List<TransactionResponse>> {
-            override fun onFailure(call: Call<List<TransactionResponse>>, t: Throwable) {}
-
-            override fun onResponse(
-                call: Call<List<TransactionResponse>>,
-                response: Response<List<TransactionResponse>>
-            ) {
-                transactionsLiveData.value = response.body() ?: emptyList()
-            }
-        })
-    }
-
-    private fun observeTransactions() {
-        transactionsLiveData.observe(this) {
-            configRecyclerViewExtract()
+            val extractRecyclerViewAdapter =
+                ExtractListAdapter(this, transactions ?: emptyList())
+            val recyclerView = binding.extractListRecyclerView
+            recyclerView.adapter = extractRecyclerViewAdapter
         }
-        getAllTransactions()
     }
+
+//    private fun getBalance() {
+//        val callback = financialControlAPI.checkBalance(null, null)
+//        callback.enqueue(object : Callback<CheckBalanceResponse> {
+//            override fun onFailure(call: Call<CheckBalanceResponse>, t: Throwable) {
+//                binding.availableBalanceTextView.text = BigDecimal.ZERO.toPtBr()
+//            }
+//
+//            override fun onResponse(
+//                call: Call<CheckBalanceResponse>,
+//                response: Response<CheckBalanceResponse>
+//            ) {
+//                val body = response.body()
+//                binding.availableBalanceTextView.text = body?.balance?.toPtBr()
+//            }
+//        })
+//    }
 
 }

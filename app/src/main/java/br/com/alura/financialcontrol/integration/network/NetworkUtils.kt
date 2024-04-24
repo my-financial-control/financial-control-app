@@ -1,4 +1,4 @@
-package br.com.alura.financialcontrol.utils
+package br.com.alura.financialcontrol.integration.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
