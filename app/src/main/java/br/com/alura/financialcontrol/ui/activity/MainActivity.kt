@@ -3,13 +3,14 @@ package br.com.alura.financialcontrol.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.databinding.MainActivityBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.integration.FinancialControl
-import br.com.alura.financialcontrol.integration.types.CheckBalanceResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import br.com.alura.financialcontrol.integration.Result
+import br.com.alura.financialcontrol.viewmodel.BalanceViewModel
+import br.com.alura.financialcontrol.viewmodel.BalanceViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() {
@@ -17,13 +18,37 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         MainActivityBinding.inflate(layoutInflater)
     }
-    private val financialControlAPI = FinancialControl.getFinancialAPIInstance()
+    private lateinit var balanceViewModel: BalanceViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(this.binding.root)
-        configNavigation()
+        balanceViewModel =
+            ViewModelProvider(this, BalanceViewModelFactory())[BalanceViewModel::class.java]
         getBalance()
+        configNavigation()
+    }
+
+    private fun getBalance() {
+        balanceViewModel.checkBalance().observe(this) {
+            val balance = it.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data.balance.toPtBr()
+                    }
+
+                    is Result.Error -> {
+                        Snackbar.make(
+                            binding.root,
+                            result.exception.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        BigDecimal.ZERO.toPtBr()
+                    }
+                }
+            }
+            binding.balanceValueTextView.text = balance
+        }
     }
 
     private fun configNavigation() {
@@ -38,23 +63,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ExtractActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun getBalance() {
-        val callback = financialControlAPI.checkBalance(null, null)
-        callback.enqueue(object : Callback<CheckBalanceResponse> {
-            override fun onFailure(call: Call<CheckBalanceResponse>, t: Throwable) {
-                binding.balanceValueTextView.text = BigDecimal.ZERO.toPtBr()
-            }
-
-            override fun onResponse(
-                call: Call<CheckBalanceResponse>,
-                response: Response<CheckBalanceResponse>
-            ) {
-                val body = response.body()
-                binding.balanceValueTextView.text = body?.balance?.toPtBr()
-            }
-        })
     }
 
 }
