@@ -1,31 +1,36 @@
 package br.com.alura.financialcontrol.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import br.com.alura.financialcontrol.databinding.MainActivityBinding
+import br.com.alura.financialcontrol.databinding.ExtractActivityBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.integration.network.Result
+import br.com.alura.financialcontrol.ui.recyclerview.ExtractListAdapter
 import br.com.alura.financialcontrol.viewmodel.BalanceViewModel
 import br.com.alura.financialcontrol.viewmodel.BalanceViewModelFactory
+import br.com.alura.financialcontrol.viewmodel.TransactionViewModel
+import br.com.alura.financialcontrol.viewmodel.TransactionViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import java.math.BigDecimal
 
-class MainActivity : AppCompatActivity() {
+class ExtractActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        MainActivityBinding.inflate(layoutInflater)
+        ExtractActivityBinding.inflate(layoutInflater)
     }
+    private lateinit var transactionViewModel: TransactionViewModel
     private lateinit var balanceViewModel: BalanceViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(this.binding.root)
+        transactionViewModel =
+            ViewModelProvider(this, TransactionViewModelFactory())[TransactionViewModel::class.java]
         balanceViewModel =
             ViewModelProvider(this, BalanceViewModelFactory())[BalanceViewModel::class.java]
         getBalance()
-        configNavigation()
+        configRecyclerViewExtract()
     }
 
     private fun getBalance() {
@@ -46,21 +51,32 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-            binding.balanceValueTextView.text = balance
+            binding.availableBalanceTextView.text = balance
         }
     }
 
-    private fun configNavigation() {
-        val newTransactionCardView = binding.newTransactionMaterialCardView
-        newTransactionCardView.setOnClickListener {
-            val intent = Intent(this, NewTransactionActivity::class.java)
-            startActivity(intent)
-        }
+    private fun configRecyclerViewExtract() {
+        transactionViewModel.findAllTransactions().observe(this) {
+            val transactions = it?.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data
+                    }
 
-        val seeExtractTextView = binding.seeExtractTextView
-        seeExtractTextView.setOnClickListener {
-            val intent = Intent(this, ExtractActivity::class.java)
-            startActivity(intent)
+                    is Result.Error -> {
+                        Snackbar.make(
+                            binding.root,
+                            result.exception.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        emptyList()
+                    }
+                }
+            }
+            val extractRecyclerViewAdapter =
+                ExtractListAdapter(this, transactions ?: emptyList())
+            val recyclerView = binding.extractListRecyclerView
+            recyclerView.adapter = extractRecyclerViewAdapter
         }
     }
 

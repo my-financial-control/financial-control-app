@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionTitleTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/title_hint_new_transaction_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionTitleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionDescriptionTextField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/description_hint_new_transaction_activity"
+            app:layout_constraintEnd_toEndOf="@id/transactionTitleTextField"
+            app:layout_constraintStart_toStartOf="@id/transactionTitleTextField"
+            app:layout_constraintTop_toBottomOf="@id/transactionTitleTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionDescriptionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionValueTextField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/value_hint_new_transaction_activity"
+            app:layout_constraintEnd_toEndOf="@id/transactionDescriptionTextField"
+            app:layout_constraintStart_toStartOf="@id/transactionDescriptionTextField"
+            app:layout_constraintTop_toBottomOf="@id/transactionDescriptionTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionValueInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/transactionTypeTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/type_hint_new_transaction_activity"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/transactionValueTextField"
+            app:layout_constraintTop_toBottomOf="@id/transactionValueTextField" />
+
+        <RadioGroup
+            android:id="@+id/transactionTypeRadioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/transactionValueTextField"
+            app:layout_constraintStart_toStartOf="@id/transactionTypeTitle"
+            app:layout_constraintTop_toBottomOf="@id/transactionTypeTitle">
+
+            <RadioButton
+                android:id="@+id/creditRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/credit_text_new_transaction_activity" />
+
+            <RadioButton
+                android:id="@+id/expenseRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expense_text_new_transaction_activity" />
+
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionCurrentMonthTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/current_month_hint_new_transaction_activity"
+            app:layout_constraintEnd_toEndOf="@id/transactionTypeRadioGroup"
+            app:layout_constraintStart_toStartOf="@id/transactionTypeRadioGroup"
+            app:layout_constraintTop_toBottomOf="@id/transactionTypeRadioGroup">
+
+            <AutoCompleteTextView
+                android:id="@+id/transactionCurrentMonthInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                app:simpleItems="@array/simple_items"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionDateTextField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/date_hint_new_transaction_activity"
+            app:layout_constraintEnd_toEndOf="@id/transactionCurrentMonthTextField"
+            app:layout_constraintStart_toStartOf="@id/transactionCurrentMonthTextField"
+            app:layout_constraintTop_toBottomOf="@id/transactionCurrentMonthTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/save_button_new_transaction_activity"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/transactionDateTextField"
+            app:layout_constraintStart_toStartOf="@id/transactionDateTextField"
+            app:layout_constraintTop_toBottomOf="@id/transactionDateTextField"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
