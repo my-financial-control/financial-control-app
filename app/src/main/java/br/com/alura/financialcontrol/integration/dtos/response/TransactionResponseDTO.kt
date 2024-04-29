@@ -1,8 +1,8 @@
-package br.com.alura.financialcontrol.integration.types
+package br.com.alura.financialcontrol.integration.dtos.response
 
 import java.math.BigDecimal
 
-data class TransactionResponse(
+data class TransactionResponseDTO(
     val id: String,
     val title: String,
     val description: String,

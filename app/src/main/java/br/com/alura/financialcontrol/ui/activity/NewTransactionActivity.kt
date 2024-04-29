@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.databinding.NewTransactionActivityBinding
-import br.com.alura.financialcontrol.integration.Result
-import br.com.alura.financialcontrol.integration.types.CreateTransactionRequest
+import br.com.alura.financialcontrol.integration.network.Result
+import br.com.alura.financialcontrol.integration.dtos.request.CreateTransactionRequestDTO
 import br.com.alura.financialcontrol.ui.components.buildDatePicker
 import br.com.alura.financialcontrol.utils.DEFAULT_DATE_FORMAT
 import br.com.alura.financialcontrol.utils.monthFromPtBr
@@ -50,7 +50,7 @@ class NewTransactionActivity : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener {
-            val request = CreateTransactionRequest(
+            val request = CreateTransactionRequestDTO(
                 binding.transactionTitleInput.text.toString(),
                 binding.transactionDescriptionInput.text.toString(),
                 BigDecimal(binding.transactionValueInput.text.toString()),

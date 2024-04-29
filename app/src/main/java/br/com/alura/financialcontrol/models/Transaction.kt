@@ -1,4 +1,4 @@
-package br.com.alura.financialcontrol.model
+package br.com.alura.financialcontrol.models
 
 import java.math.BigDecimal
 import java.time.LocalDate

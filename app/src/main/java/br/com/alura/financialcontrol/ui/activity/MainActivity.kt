@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.databinding.MainActivityBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
-import br.com.alura.financialcontrol.integration.FinancialControl
-import br.com.alura.financialcontrol.integration.Result
+import br.com.alura.financialcontrol.integration.network.Result
 import br.com.alura.financialcontrol.viewmodel.BalanceViewModel
 import br.com.alura.financialcontrol.viewmodel.BalanceViewModelFactory
 import com.google.android.material.snackbar.Snackbar

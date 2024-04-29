@@ -1,7 +1,9 @@
-package br.com.alura.financialcontrol.integration
+package br.com.alura.financialcontrol.integration.repositories
 
 import androidx.lifecycle.liveData
-import br.com.alura.financialcontrol.integration.types.CreateTransactionRequest
+import br.com.alura.financialcontrol.integration.network.Result
+import br.com.alura.financialcontrol.integration.dtos.request.CreateTransactionRequestDTO
+import br.com.alura.financialcontrol.integration.services.TransactionService
 import java.net.ConnectException
 
 
@@ -21,7 +23,7 @@ class TransactionRepository(private val service: TransactionService) {
         }
     }
 
-    fun registerTransaction(request: CreateTransactionRequest) = liveData {
+    fun registerTransaction(request: CreateTransactionRequestDTO) = liveData {
         try {
             val response = service.registerTransaction(request)
             if (response.isSuccessful) {

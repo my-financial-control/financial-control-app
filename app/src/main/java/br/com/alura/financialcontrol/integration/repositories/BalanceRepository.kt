@@ -1,6 +1,8 @@
-package br.com.alura.financialcontrol.integration
+package br.com.alura.financialcontrol.integration.repositories
 
 import androidx.lifecycle.liveData
+import br.com.alura.financialcontrol.integration.network.Result
+import br.com.alura.financialcontrol.integration.services.BalanceService
 import java.net.ConnectException
 
 class BalanceRepository(private val service: BalanceService) {

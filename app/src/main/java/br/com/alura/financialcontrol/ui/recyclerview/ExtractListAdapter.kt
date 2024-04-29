@@ -9,12 +9,12 @@ import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.databinding.ExtractListItemBinding
 import br.com.alura.financialcontrol.extensions.defaultFormat
 import br.com.alura.financialcontrol.extensions.toPtBr
-import br.com.alura.financialcontrol.integration.types.TransactionResponse
+import br.com.alura.financialcontrol.integration.dtos.response.TransactionResponseDTO
 import java.time.LocalDate
 
 class ExtractListAdapter(
     private val context: Context,
-    transactions: List<TransactionResponse>
+    transactions: List<TransactionResponseDTO>
 ) : RecyclerView.Adapter<ExtractListAdapter.ViewHolder>() {
 
     private val transactions = transactions.toMutableList()
@@ -27,7 +27,7 @@ class ExtractListAdapter(
         private val ellipseTypeTransaction = binding.ellipse
 
         @SuppressLint("SetTextI18n")
-        fun bind(transaction: TransactionResponse) {
+        fun bind(transaction: TransactionResponseDTO) {
             this.title.text = transaction.title
             this.date.text = LocalDate.parse(transaction.date).defaultFormat()
             this.value.text = transaction.value.toPtBr()

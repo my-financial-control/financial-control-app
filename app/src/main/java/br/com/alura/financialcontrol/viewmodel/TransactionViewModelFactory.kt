@@ -3,8 +3,8 @@ package br.com.alura.financialcontrol.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.BuildConfig
-import br.com.alura.financialcontrol.integration.TransactionRepository
-import br.com.alura.financialcontrol.integration.TransactionService
+import br.com.alura.financialcontrol.integration.repositories.TransactionRepository
+import br.com.alura.financialcontrol.integration.services.TransactionService
 import br.com.alura.financialcontrol.integration.network.NetworkUtils
 
 @Suppress("UNCHECKED_CAST")

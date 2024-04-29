@@ -1,6 +1,6 @@
-package br.com.alura.financialcontrol.integration
+package br.com.alura.financialcontrol.integration.services
 
-import br.com.alura.financialcontrol.integration.types.CheckBalanceResponse
+import br.com.alura.financialcontrol.integration.dtos.response.CheckBalanceResponseDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,5 +10,5 @@ interface BalanceService {
     suspend fun checkBalance(
         @Query("month") month: Int?,
         @Query("year") year: Int?
-    ): Response<CheckBalanceResponse>
+    ): Response<CheckBalanceResponseDTO>
 }

@@ -1,9 +1,9 @@
-package br.com.alura.financialcontrol.integration.types
+package br.com.alura.financialcontrol.integration.dtos.request
 
 import java.math.BigDecimal
 import java.time.LocalDate
 
-data class CreateTransactionRequest(
+data class CreateTransactionRequestDTO(
     val title: String,
     val description: String,
     val value: BigDecimal,
