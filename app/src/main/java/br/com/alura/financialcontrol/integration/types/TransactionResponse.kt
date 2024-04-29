@@ -1,10 +1,9 @@
 package br.com.alura.financialcontrol.integration.types
 
 import java.math.BigDecimal
-import java.util.UUID
 
 data class TransactionResponse(
-    val id: UUID,
+    val id: String,
     val title: String,
     val description: String,
     val value: BigDecimal,
