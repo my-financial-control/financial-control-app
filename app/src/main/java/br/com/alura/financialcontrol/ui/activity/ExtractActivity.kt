@@ -30,6 +30,7 @@ class ExtractActivity : AppCompatActivity() {
         balanceViewModel =
             ViewModelProvider(this, BalanceViewModelFactory())[BalanceViewModel::class.java]
         getBalance()
+        getBalancePlusRemainingPayments()
         configRecyclerViewExtract()
     }
 
@@ -52,6 +53,28 @@ class ExtractActivity : AppCompatActivity() {
                 }
             }
             binding.availableBalanceTextView.text = balance
+        }
+    }
+
+    private fun getBalancePlusRemainingPayments() {
+        balanceViewModel.checkBalancePlusRemainingPayments().observe(this) {
+            val balance = it.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data.balance.toPtBr()
+                    }
+
+                    is Result.Error -> {
+                        Snackbar.make(
+                            binding.root,
+                            result.exception.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        BigDecimal.ZERO.toPtBr()
+                    }
+                }
+            }
+            binding.availableBalancePlusToReceiveValueTextView.text = balance
         }
     }
 

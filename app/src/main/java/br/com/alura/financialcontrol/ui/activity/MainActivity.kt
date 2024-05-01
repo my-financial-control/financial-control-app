@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         balanceViewModel =
             ViewModelProvider(this, BalanceViewModelFactory())[BalanceViewModel::class.java]
         getBalance()
+        getBalancePlusRemainingPayments()
         configNavigation()
     }
 
@@ -47,6 +48,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             binding.balanceValueTextView.text = balance
+        }
+    }
+
+    private fun getBalancePlusRemainingPayments() {
+        balanceViewModel.checkBalancePlusRemainingPayments().observe(this) {
+            val balance = it.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data.balance.toPtBr()
+                    }
+
+                    is Result.Error -> {
+                        Snackbar.make(
+                            binding.root,
+                            result.exception.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        BigDecimal.ZERO.toPtBr()
+                    }
+                }
+            }
+            binding.availableBalancePlusToReceiveValueTextView.text = balance
         }
     }
 
