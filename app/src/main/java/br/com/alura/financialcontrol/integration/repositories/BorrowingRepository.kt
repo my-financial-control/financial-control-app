@@ -16,7 +16,6 @@ class BorrowingRepository(private val service: BorrowingService) {
                 emit(Result.Error(Exception("Failed to fetch balance")))
             }
         } catch (e: ConnectException) {
-            Log.i("AQUI", e.toString())
             emit(Result.Error(Exception("Failed to communicate with API")))
         } catch (e: Exception) {
             emit(Result.Error(e))
