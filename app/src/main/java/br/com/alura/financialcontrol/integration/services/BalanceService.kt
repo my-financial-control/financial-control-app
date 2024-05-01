@@ -11,4 +11,10 @@ interface BalanceService {
         @Query("month") month: Int?,
         @Query("year") year: Int?
     ): Response<CheckBalanceResponseDTO>
+
+    @GET("api/v1/check-balance/plus-remaining-payments")
+    suspend fun checkBalancePlusRemainingPayments(
+        @Query("month") month: Int?,
+        @Query("year") year: Int?
+    ): Response<CheckBalanceResponseDTO>
 }
