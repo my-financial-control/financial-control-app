@@ -74,16 +74,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configNavigation() {
-        val newTransactionCardView = binding.newTransactionMaterialCardView
-        newTransactionCardView.setOnClickListener {
-            val intent = Intent(this, NewTransactionActivity::class.java)
-            startActivity(intent)
+        binding.newTransactionMaterialCardView.setOnClickListener {
+            startActivity(Intent(this, NewTransactionActivity::class.java))
         }
 
-        val seeExtractTextView = binding.seeExtractTextView
-        seeExtractTextView.setOnClickListener {
-            val intent = Intent(this, ExtractActivity::class.java)
-            startActivity(intent)
+        binding.seeExtractTextView.setOnClickListener {
+            startActivity(Intent(this, ExtractActivity::class.java))
+        }
+
+        binding.borrowingsMaterialCardView.setOnClickListener {
+            startActivity(Intent(this, BorrowingExtract::class.java))
         }
     }
 

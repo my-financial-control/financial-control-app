@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.BorrowingExtract">
+
+    <TextView
+        android:id="@+id/totalBorrowedTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/total_borrowed"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalBorrowedTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/totalBorrowedTitleTextView"
+        app:layout_constraintStart_toStartOf="@id/totalBorrowedTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/totalBorrowedTitleTextView"
+        tools:text="R$ 1534,68" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/MaterialDivider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/totalBorrowedTextView"
+        app:layout_constraintStart_toStartOf="@id/totalBorrowedTextView"
+        app:layout_constraintTop_toBottomOf="@id/totalBorrowedTextView" />
+
+    <TextView
+        android:id="@+id/extractBorrowingsTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/extract_extract_activity"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/MaterialDivider"
+        app:layout_constraintStart_toStartOf="@id/MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/MaterialDivider" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/extractBorrowingsListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/extractBorrowingsTitleTextView"
+        app:layout_constraintStart_toStartOf="@id/extractBorrowingsTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/extractBorrowingsTitleTextView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="14"
+        tools:listitem="@layout/borrowing_extract_list_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
