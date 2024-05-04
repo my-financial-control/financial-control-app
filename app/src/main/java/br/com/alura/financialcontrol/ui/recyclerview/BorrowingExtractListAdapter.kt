@@ -27,7 +27,7 @@ class BorrowingExtractListAdapter(
         fun bind(borrowing: BorrowingResponseDTO) {
             date.text = borrowing.date
             borrower.text = borrowing.borrower
-            value.text = "- ${borrowing.value.toPtBr()}"
+            value.text = borrowing.value.toPtBr()
             if (!borrowing.paid) {
                 ellipseIsPaidBorrowing.setImageResource(R.drawable.circle_shape_red)
             }
