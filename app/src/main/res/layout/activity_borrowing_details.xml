@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.BorrowingDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/borrowerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/borrowerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/borrower_txt_view"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewBorrowerName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewBorrowerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txtViewBorrowingStatus"
+            app:layout_constraintStart_toEndOf="@id/borrowerTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Joe Doe" />
+
+        <TextView
+            android:id="@+id/txtViewBorrowingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/retangle_shape_red"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewBorrowerName"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pendente" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textViewValorTotalTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/valor_total"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/borrowerContainer" />
+
+    <TextView
+        android:id="@+id/textViewBorrowingValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toEndOf="@id/textViewValorTotalTitle"
+        app:layout_constraintTop_toBottomOf="@id/borrowerContainer"
+        tools:text="R$ 260,59" />
+
+    <TextView
+        android:id="@+id/textViewValorPagoTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pago"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/textViewValorTotalTitle" />
+
+    <TextView
+        android:id="@+id/textViewBorrowingAmountPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/green_positive"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toEndOf="@id/textViewValorPagoTitle"
+        app:layout_constraintTop_toBottomOf="@id/textViewValorTotalTitle"
+        tools:text="R$ 110,59" />
+
+    <TextView
+        android:id="@+id/textViewAReceberTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/receber"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/textViewValorPagoTitle" />
+
+    <TextView
+        android:id="@+id/textViewBorrowingAmountToReceive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/red_negative"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toEndOf="@id/textViewAReceberTitle"
+        app:layout_constraintTop_toBottomOf="@id/textViewValorPagoTitle"
+        tools:text="R$ 150,00" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/MaterialDivider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/textViewAReceberTitle" />
+
+    <TextView
+        android:id="@+id/textViewParcelasTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/parcelas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/MaterialDivider" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/MaterialDivider2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/textViewParcelasTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewParcelsBorrowing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@id/borrowerContainer"
+        app:layout_constraintStart_toStartOf="@id/borrowerContainer"
+        app:layout_constraintTop_toBottomOf="@id/MaterialDivider2"
+        tools:itemCount="15"
+        tools:listitem="@layout/borrowing_parcels_list_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

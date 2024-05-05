@@ -29,6 +29,7 @@
         <activity android:name=".ui.activity.ExtractActivity" />
         <activity android:name=".ui.activity.NewTransactionActivity" />
         <activity android:name=".ui.activity.BorrowingExtract" />
+        <activity android:name=".ui.activity.BorrowingDetails" />
     </application>
 
 </manifest>

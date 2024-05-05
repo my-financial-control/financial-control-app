@@ -19,4 +19,11 @@
     <string name="save_button_new_transaction_activity">SALVAR</string>
     <string name="see_extract_main_activity">Ver extrato</string>
     <string name="total_borrowed">Total emprestado</string>
+    <string name="borrower_txt_view">Devedor:</string>
+    <string name="valor_total">Valor total:</string>
+    <string name="pago">Pago:</string>
+    <string name="receber">À receber:</string>
+    <string name="parcelas">Parcelas</string>
+    <string name="pago_status">PAGO</string>
+    <string name="pendente_status">PENDENTE</string>
 </resources>

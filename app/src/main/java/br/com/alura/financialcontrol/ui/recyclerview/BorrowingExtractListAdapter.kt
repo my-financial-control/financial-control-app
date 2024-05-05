@@ -2,6 +2,7 @@ package br.com.alura.financialcontrol.ui.recyclerview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.databinding.BorrowingExtractListItemBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.integration.dtos.response.BorrowingResponseDTO
+import br.com.alura.financialcontrol.ui.activity.BorrowingDetails
 
 class BorrowingExtractListAdapter(
     private val context: Context,
@@ -32,6 +34,16 @@ class BorrowingExtractListAdapter(
                 ellipseIsPaidBorrowing.setImageResource(R.drawable.circle_shape_red)
             }
         }
+
+        fun onClick(borrowing: BorrowingResponseDTO) {
+            binding.root.setOnClickListener {
+                val context = binding.root.context
+                val intent = Intent(context, BorrowingDetails::class.java).apply {
+                    putExtra("borrowing", borrowing)
+                }
+                context.startActivity(intent)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,6 +60,7 @@ class BorrowingExtractListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val borrowing = borrowings[position]
         holder.bind(borrowing)
+        holder.onClick(borrowing)
     }
 
 }
