@@ -20,6 +20,7 @@ class BorrowingDetails : AppCompatActivity() {
         val borrowing = intent.getParcelableExtra<BorrowingResponseDTO>("borrowing")!!
         configTextViews(borrowing)
         configRecyclerViewBorrowingParcels(borrowing)
+        configFabRegisterParcel()
     }
 
     private fun configTextViews(borrowing: BorrowingResponseDTO) {
@@ -44,5 +45,10 @@ class BorrowingDetails : AppCompatActivity() {
             BorrowingParcelsListAdapter(this, borrowing.parcels)
         val recyclerView = binding.recyclerViewParcelsBorrowing
         recyclerView.adapter = parcelsRecyclerViewAdapter
+    }
+
+    private fun configFabRegisterParcel() {
+        binding.registerParcelFab.setOnClickListener {
+        }
     }
 }

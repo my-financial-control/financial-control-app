@@ -26,4 +26,5 @@
     <string name="parcelas">Parcelas</string>
     <string name="pago_status">PAGO</string>
     <string name="pendente_status">PENDENTE</string>
+    <string name="registrar_parcela">Registrar Parcela</string>
 </resources>
