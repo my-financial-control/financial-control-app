@@ -6,6 +6,7 @@ import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.databinding.ActivityBorrowingDetailsBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.integration.dtos.response.BorrowingResponseDTO
+import br.com.alura.financialcontrol.ui.dialog.RegisterParcelDialog
 import br.com.alura.financialcontrol.ui.recyclerview.BorrowingParcelsListAdapter
 import java.math.BigDecimal
 
@@ -20,7 +21,7 @@ class BorrowingDetails : AppCompatActivity() {
         val borrowing = intent.getParcelableExtra<BorrowingResponseDTO>("borrowing")!!
         configTextViews(borrowing)
         configRecyclerViewBorrowingParcels(borrowing)
-        configFabRegisterParcel()
+        configFabRegisterParcel(borrowing)
     }
 
     private fun configTextViews(borrowing: BorrowingResponseDTO) {
@@ -47,8 +48,9 @@ class BorrowingDetails : AppCompatActivity() {
         recyclerView.adapter = parcelsRecyclerViewAdapter
     }
 
-    private fun configFabRegisterParcel() {
+    private fun configFabRegisterParcel(borrowing: BorrowingResponseDTO) {
         binding.registerParcelFab.setOnClickListener {
+            RegisterParcelDialog(this, borrowing.id).show()
         }
     }
 }
