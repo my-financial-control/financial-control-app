@@ -18,6 +18,11 @@ class BorrowingDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val borrowing = intent.getParcelableExtra<BorrowingResponseDTO>("borrowing")!!
+        configTextViews(borrowing)
+        configRecyclerViewBorrowingParcels(borrowing)
+    }
+
+    private fun configTextViews(borrowing: BorrowingResponseDTO) {
         binding.textViewBorrowerName.text = borrowing.borrower
         binding.textViewBorrowingValue.text = borrowing.value.toPtBr()
         val valuePaid = borrowing.parcels.fold(BigDecimal.ZERO) { acc, parcel ->
@@ -32,7 +37,6 @@ class BorrowingDetails : AppCompatActivity() {
             binding.txtViewBorrowingStatus.setBackgroundResource(R.drawable.retangle_shape_red)
             binding.txtViewBorrowingStatus.text = getString(R.string.pendente_status)
         }
-        configRecyclerViewBorrowingParcels(borrowing)
     }
 
     private fun configRecyclerViewBorrowingParcels(borrowing: BorrowingResponseDTO) {
