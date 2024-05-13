@@ -2,22 +2,28 @@ package br.com.alura.financialcontrol.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.databinding.ActivityBorrowingDetailsBinding
 import br.com.alura.financialcontrol.extensions.toPtBr
 import br.com.alura.financialcontrol.integration.dtos.response.BorrowingResponseDTO
 import br.com.alura.financialcontrol.ui.dialog.RegisterParcelDialog
 import br.com.alura.financialcontrol.ui.recyclerview.BorrowingParcelsListAdapter
+import br.com.alura.financialcontrol.viewmodel.BorrowingViewModel
+import br.com.alura.financialcontrol.viewmodel.BorrowingViewModelFactory
 import java.math.BigDecimal
 
 class BorrowingDetails : AppCompatActivity() {
     private val binding by lazy {
         ActivityBorrowingDetailsBinding.inflate(layoutInflater)
     }
+    private lateinit var borrowingViewModel: BorrowingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        borrowingViewModel =
+            ViewModelProvider(this, BorrowingViewModelFactory())[BorrowingViewModel::class.java]
         val borrowing = intent.getParcelableExtra<BorrowingResponseDTO>("borrowing")!!
         configTextViews(borrowing)
         configRecyclerViewBorrowingParcels(borrowing)
@@ -50,7 +56,7 @@ class BorrowingDetails : AppCompatActivity() {
 
     private fun configFabRegisterParcel(borrowing: BorrowingResponseDTO) {
         binding.registerParcelFab.setOnClickListener {
-            RegisterParcelDialog(this, borrowing.id).show()
+            RegisterParcelDialog(this, borrowing.id, this, borrowingViewModel).show()
         }
     }
 }

@@ -23,6 +23,24 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/parcelDateTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/data"
+        app:layout_constraintEnd_toEndOf="@id/parcelValueTextField"
+        app:layout_constraintStart_toStartOf="@id/parcelValueTextField"
+        app:layout_constraintTop_toBottomOf="@id/parcelValueTextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/parcelDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/registerParcelButton"
         style="@style/Widget.Material3.Button"
@@ -33,7 +51,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/parcelValueTextField"
         app:layout_constraintStart_toStartOf="@id/parcelValueTextField"
-        app:layout_constraintTop_toBottomOf="@id/parcelValueTextField" />
+        app:layout_constraintTop_toBottomOf="@id/parcelDateTextField" />
 
     <Button
         android:id="@+id/cancelButton"
