@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import br.com.alura.financialcontrol.R
 import br.com.alura.financialcontrol.integration.dtos.request.PayParcelBorrowingRequestDTO
 import br.com.alura.financialcontrol.integration.network.Result
+import br.com.alura.financialcontrol.ui.components.buildDatePicker
 import br.com.alura.financialcontrol.utils.DEFAULT_DATE_FORMAT
 import br.com.alura.financialcontrol.viewmodel.BorrowingViewModel
 import com.google.android.material.textfield.TextInputEditText
@@ -18,6 +20,7 @@ import java.time.LocalDate
 class RegisterParcelDialog(
     private val context: Context,
     private val borrowingId: String,
+    private val supportFragmentManager: FragmentManager,
     private val lifecycleOwner: LifecycleOwner,
     private val viewModel: BorrowingViewModel
 ) {
@@ -37,6 +40,14 @@ class RegisterParcelDialog(
     }
 
     private fun configComponents() {
+        buildDatePicker(editTextDate, supportFragmentManager, "Selecione a data")
+        configRegisterParcelButton()
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+    }
+
+    private fun configRegisterParcelButton() {
         registerParcelButton.setOnClickListener {
             viewModel.payParcel(
                 borrowingId,
@@ -66,9 +77,6 @@ class RegisterParcelDialog(
                     }
                 }
             }
-            alertDialog.dismiss()
-        }
-        cancelButton.setOnClickListener {
             alertDialog.dismiss()
         }
     }

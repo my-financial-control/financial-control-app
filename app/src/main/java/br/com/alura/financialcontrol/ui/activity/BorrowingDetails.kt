@@ -58,7 +58,13 @@ class BorrowingDetails : AppCompatActivity() {
             binding.registerParcelFab.hide()
         } else {
             binding.registerParcelFab.setOnClickListener {
-                RegisterParcelDialog(this, borrowing.id, this, borrowingViewModel).show()
+                RegisterParcelDialog(
+                    this,
+                    borrowing.id,
+                    supportFragmentManager,
+                    this,
+                    borrowingViewModel
+                ).show()
             }
         }
 
