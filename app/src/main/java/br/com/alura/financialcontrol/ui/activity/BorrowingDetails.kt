@@ -48,15 +48,19 @@ class BorrowingDetails : AppCompatActivity() {
     }
 
     private fun configRecyclerViewBorrowingParcels(borrowing: BorrowingResponseDTO) {
-        val parcelsRecyclerViewAdapter =
-            BorrowingParcelsListAdapter(this, borrowing.parcels)
+        val parcelsRecyclerViewAdapter = BorrowingParcelsListAdapter(this, borrowing.parcels)
         val recyclerView = binding.recyclerViewParcelsBorrowing
         recyclerView.adapter = parcelsRecyclerViewAdapter
     }
 
     private fun configFabRegisterParcel(borrowing: BorrowingResponseDTO) {
-        binding.registerParcelFab.setOnClickListener {
-            RegisterParcelDialog(this, borrowing.id, this, borrowingViewModel).show()
+        if (borrowing.paid) {
+            binding.registerParcelFab.hide()
+        } else {
+            binding.registerParcelFab.setOnClickListener {
+                RegisterParcelDialog(this, borrowing.id, this, borrowingViewModel).show()
+            }
         }
+
     }
 }
