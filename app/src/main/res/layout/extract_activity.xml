@@ -71,17 +71,53 @@
         app:layout_constraintStart_toStartOf="@id/balancePlusToReceiveValueContainer"
         app:layout_constraintTop_toBottomOf="@id/balancePlusToReceiveValueContainer" />
 
-    <TextView
-        android:id="@+id/extractTitleTextView"
+    <LinearLayout
+        android:id="@+id/extractTitleContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/extract_extract_activity"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/MaterialDivider"
         app:layout_constraintStart_toStartOf="@id/MaterialDivider"
-        app:layout_constraintTop_toBottomOf="@id/MaterialDivider" />
+        app:layout_constraintTop_toBottomOf="@id/MaterialDivider">
+
+        <TextView
+            android:id="@+id/extractTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/extract_extract_activity"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/currentMonthFilterTextInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:hint="@string/current_month_hint_new_transaction_activity">
+
+            <AutoCompleteTextView
+                android:id="@+id/currentMonthFilterAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                app:simpleItems="@array/simple_items"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/MaterialDividerTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="@id/MaterialDivider"
+        app:layout_constraintStart_toStartOf="@id/MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/extractTitleContainer" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/extractListRecyclerView"
@@ -89,9 +125,9 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/extractTitleTextView"
-        app:layout_constraintStart_toStartOf="@id/extractTitleTextView"
-        app:layout_constraintTop_toBottomOf="@id/extractTitleTextView"
+        app:layout_constraintEnd_toEndOf="@id/MaterialDivider"
+        app:layout_constraintStart_toStartOf="@id/MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/MaterialDividerTwo"
         app:layout_constraintVertical_bias="0.0"
         tools:itemCount="14"
         tools:listitem="@layout/extract_list_item" />
